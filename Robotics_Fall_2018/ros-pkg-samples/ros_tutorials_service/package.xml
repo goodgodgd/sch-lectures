@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- packages.xml: ros에서 패키지를 관리하는데 필요한 정보 담음 -->
+<!-- 공식 패키지로 업로드시 공개해야 할 정보들 포함: 저자, 저작권 등 -->
+<!-- 의존 패키지들을 지정하면 빌드시 설치되지 않은 의존 패키지 자동 설치 -->
+<!-- xml version: 필수는 아님 -->
+
+<package>
+  <!-- 패키지 이름은 자동으로 지정됨, 수정할 시 이름이 틀리지 않게 주의 -->
+  <name>ros_tutorials_service</name>
+  <!-- 기본 생성시 버전은 0.0.0 인데 원하는대로 수정 가능 -->
+  <version>0.1.0</version>
+
+  <!-- 위키를 만들면 자동으로 이 문구가 업로드 됨 -->
+  <description>ROS turtorial package to learn the service</description>
+  <!-- 저작권, 저자, 관리자 등 추가정보 -->
+  <license>BSD</license>
+  <author email="id@sch.ac.kr">your name</author>
+  <maintainer email="id@sch.ac.kr">your name</maintainer>
+  <url type="repository">https://github.com/goodgodgd/Fall_2018_Lectures</url>
+  <!-- 빌드 시스템 지정, catkin 쓰면 됨 -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <!-- 빌드 할 때 의존성: 언어는 cpp, 표준 메시지 사용, 새 메시지 생성 -->
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+  <!-- 실행 할 때 의존성: 언어는 cpp, 표준 메시지 사용, 새 메시지 사용 -->
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>message_runtime</run_depend>
+  <export></export>
+</package>
+
