@@ -8,12 +8,11 @@ verify_ssl = true
 [packages]
 numpy = "*"
 pandas = "*"
-jupyter = "*"
-matplotlib = "*"
-sympy = "*"
+opencv-python = "*"
 pyqt5 = "*"
 pyqt5-tools = "*"
-opencv-python = "*"
+matplotlib = "*"
+jupyter = "*"
 
 [requires]
 python_version = "3.6"

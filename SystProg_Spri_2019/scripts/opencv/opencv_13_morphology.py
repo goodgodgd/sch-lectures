@@ -13,7 +13,7 @@ def erode_and_dilate():
     images["erode"] = cv2.erode(srcimg, kernel)
     images["dilate"] = cv2.dilate(srcimg, kernel)
     result_img = si.show_imgs(images, "Erode and Dilate", 1)
-    # cv2.imwrite(IMG_PATH + "/erode-dilate.jpg", result_img)
+    # cv2.imwrite(IMG_PATH + "/result/erode-dilate.jpg", result_img)
 
 
 def salt_and_pepper_noise(image):
@@ -36,7 +36,7 @@ def morphologies():
     images["tophat"] = cv2.morphologyEx(srcimg, cv2.MORPH_TOPHAT, kernel)
     images["blackhat"] = cv2.morphologyEx(srcimg, cv2.MORPH_BLACKHAT, kernel)
     result_img = si.show_imgs(images, "Morphology Ops", 2)
-    # cv2.imwrite(IMG_PATH + "/morphologies.jpg", result_img)
+    # cv2.imwrite(IMG_PATH + "/result/morphologies.jpg", result_img)
 
 
 if __name__ == "__main__":

@@ -24,7 +24,7 @@ class MouseEventHandler:
 
 def draw_line():
     IMG_PATH = "../sample_imgs"
-    filename = os.path.join(IMG_PATH, "makrae.jpg")
+    filename = os.path.join(IMG_PATH, "result", "makrae.jpg")
     srcimg = cv2.imread(filename)
     window_name = "line_drawing"
     cv2.imshow(window_name, srcimg)

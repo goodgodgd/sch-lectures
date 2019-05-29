@@ -17,7 +17,7 @@ def blur():
         blur_imgs[title] = cv2.blur(image, ksize)
     resimg = si.show_imgs(filter_imgs, "cv2.filter2D", 3)
     resimg = si.show_imgs(blur_imgs, "cv2.blur", 3)
-    # cv2.imwrite(IMG_PATH + "/yumi-blur.jpg", resimg)
+    # cv2.imwrite(IMG_PATH + "/result/yumi-blur.jpg", resimg)
 
 
 def gaussian():
@@ -28,7 +28,7 @@ def gaussian():
     blur_imgs["blur"] = cv2.blur(image, kernel_size)
     blur_imgs["GaussianBlur"] = cv2.GaussianBlur(image, kernel_size, 0)
     result_img = si.show_imgs(blur_imgs, "GaussianBlur", 3, 1000)
-    # cv2.imwrite(IMG_PATH + "/yumi-gaussian.jpg", result_img)
+    # cv2.imwrite(IMG_PATH + "/result/yumi-gaussian.jpg", result_img)
 
 
 def median():
@@ -39,7 +39,7 @@ def median():
     median_imgs[f"gaussian {kernel_size}"] = cv2.GaussianBlur(image, kernel_size, 0)
     median_imgs[f"median {kernel_size[0]}"] = cv2.medianBlur(image, kernel_size[0])
     result_img = si.show_imgs(median_imgs, "Median Filter", 3)
-    # cv2.imwrite(IMG_PATH + "/snp-median.jpg", result_img)
+    # cv2.imwrite(IMG_PATH + "/result/snp-median.jpg", result_img)
 
     image = cv2.imread(IMG_PATH + "/ann.jpg")
     median_imgs = dict()
@@ -47,7 +47,7 @@ def median():
     median_imgs["median (3)"] = cv2.medianBlur(image, 3)
     median_imgs["median (5)"] = cv2.medianBlur(image, 5)
     result_img = si.show_imgs(median_imgs, "Median Filter", 3)
-    # cv2.imwrite(IMG_PATH + "/ann-median.jpg", result_img)
+    # cv2.imwrite(IMG_PATH + "/result/ann-median.jpg", result_img)
 
 
 def bilateral():
@@ -59,7 +59,7 @@ def bilateral():
     blur_imgs["bilateral (5,50,50)"] = cv2.bilateralFilter(image, 5, 50, 50)
     blur_imgs["bilateral (5,150,150)"] = cv2.bilateralFilter(image, 5, 150, 150)
     result_img = si.show_imgs(blur_imgs, "Bilateral Filter", 2)
-    cv2.imwrite(IMG_PATH + "/road-bilateral.jpg", result_img)
+    cv2.imwrite(IMG_PATH + "/result/road-bilateral.jpg", result_img)
 
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@ import cv2
 
 # 파일명 만들기
 IMG_PATH = "../sample_imgs"
-filename = os.path.join(IMG_PATH, "superson.jpg")
+filename = os.path.join(IMG_PATH, "result", "superson.jpg")
 print("filename:", filename)
 # 네 가지 형식으로 영상 불러오기
 img_color = cv2.imread(filename, cv2.IMREAD_COLOR)
@@ -26,6 +26,6 @@ key = cv2.waitKey()
 print("key in:", key, "==", chr(key))
 # key가 's'이면 영상 저장
 if key == ord('s'):
-    filename = os.path.join(IMG_PATH, "superson-save.jpg")
+    filename = os.path.join(IMG_PATH, "result", "superson-save.jpg")
     cv2.imwrite(filename, img_color)
 cv2.destroyAllWindows()

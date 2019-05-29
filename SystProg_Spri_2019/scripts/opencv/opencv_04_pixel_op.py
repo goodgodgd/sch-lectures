@@ -2,7 +2,7 @@ import os
 import cv2
 
 IMG_PATH = "../sample_imgs"
-filename = os.path.join(IMG_PATH, "jjang.jpg")
+filename = os.path.join(IMG_PATH, "result", "jjang.jpg")
 image = cv2.imread(filename)
 # 영상 속성 확인
 print(f"image info: shape={image.shape}, dtype={image.dtype}, size={image.size}")

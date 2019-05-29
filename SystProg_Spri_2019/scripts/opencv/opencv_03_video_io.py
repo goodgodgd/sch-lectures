@@ -3,7 +3,7 @@ import cv2
 
 # 원본 동영상 파일 열기
 IMG_PATH = "../sample_imgs"
-filename = os.path.join(IMG_PATH, "endgame.mp4")
+filename = os.path.join(IMG_PATH, "result", "endgame.mp4")
 cap = cv2.VideoCapture(filename)
 if not cap.isOpened():
     raise FileNotFoundError()
@@ -11,7 +11,7 @@ print(f'get video property: width={cap.get(cv2.CAP_PROP_FRAME_WIDTH)}, '
       f'height={cap.get(cv2.CAP_PROP_FRAME_HEIGHT)}')
 cap.set(cv2.CAP_PROP_POS_MSEC, 20000)
 # 저장할 동영상 파일 열기
-filename = os.path.join(IMG_PATH, "endgame_rsz.mp4")
+filename = os.path.join(IMG_PATH, "result", "endgame_rsz.mp4")
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')    # *'DIVX'
 new_size = (640, 360)
 vout = cv2.VideoWriter(filename, fourcc, 30, new_size)

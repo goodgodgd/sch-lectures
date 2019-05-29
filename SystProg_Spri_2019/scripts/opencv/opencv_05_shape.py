@@ -2,7 +2,7 @@ import os
 import cv2
 
 IMG_PATH = "../sample_imgs"
-filename = os.path.join(IMG_PATH, "makrae.jpg")
+filename = os.path.join(IMG_PATH, "result", "makrae.jpg")
 srcimg = cv2.imread(filename)
 shapeimg = srcimg.copy()
 # 도형 그리기

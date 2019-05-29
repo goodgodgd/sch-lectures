@@ -3,7 +3,7 @@ import cv2
 
 # 동영상 파일 열기
 IMG_PATH = "../sample_imgs"
-filename = os.path.join(IMG_PATH, "endgame.mp4")
+filename = os.path.join(IMG_PATH, "result", "endgame.mp4")
 cap = cv2.VideoCapture(filename)
 while 1:
     # 프레임 한 장 읽기
