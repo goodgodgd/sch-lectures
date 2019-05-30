@@ -272,3 +272,26 @@ unzip D2Coding.zip -d D2Coding
 sudo cp -r ./D2Coding/* /usr/share/fonts/truetype
 sudo fc-cache -fv
 ````
+
+
+
+### 에러 해결
+
+OpenCV를 Qt와 함께 빌드 중 아래와 같은 에러 발생시
+
+```
+/usr/bin/ld: warning: libicui18n.so.56, needed by //media/ark/sub/ProgramFiles/Qt/5.10.0/gcc_64/lib/libQt5Core.so.5, not found (try using -rpath or -rpath-link)
+/usr/bin/ld: warning: libicuuc.so.56, needed by //media/ark/sub/ProgramFiles/Qt/5.10.0/gcc_64/lib/libQt5Core.so.5, not found (try using -rpath or -rpath-link)
+/usr/bin/ld: warning: libicudata.so.56, needed by //media/ark/sub/ProgramFiles/Qt/5.10.0/gcc_64/lib/libQt5Core.so.5, not found (try using -rpath or -rpath-link)
+//media/ark/sub/ProgramFiles/Qt/5.10.0/gcc_64/lib/libQt5Core.so.5: undefined reference to `u_strToLower_56'
+//media/ark/sub/ProgramFiles/Qt/5.10.0/gcc_64/lib/libQt5Core.so.5: undefined reference to `ucnv_getStandardName_56'
+```
+
+아래 명령어로 해결
+
+```bash
+export LD_LIBRARY_PATH=/path/to/Qt/lib:$LD_LIBRARY_PATH
+```
+
+
+
