@@ -19,6 +19,7 @@ def watershed():
     images["apparent sky"] = app_sky
     app_goose = cv2.dilate(binary, kernel, iterations=1)
     images["apparent wildgoose"] = app_goose
+    images["undetermined"] = cv2.subtract(app_goose, app_sky)
     # create markers and watershed
     markers = np.zeros(gray.shape, dtype=np.int32)
     markers[app_sky > 0] = SKY_LABEL
