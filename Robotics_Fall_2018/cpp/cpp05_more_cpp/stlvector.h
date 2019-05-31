@@ -17,18 +17,6 @@ void practiceVector()
     // 기본 배열 길이를 5로 설정
     std::vector<int> integersB(5);
 
-    // 배열 사이즈 확인
-    std::cout << "check size A=" << integersA.size() << std::endl;
-    std::cout << "check size B=" << integersB.size() << std::endl;
-
-    // 배열 사이즈 변경
-    integersA.resize(10);
-    std::cout << "after resizing: size A=" << integersA.size() << std::endl;
-
-    // 배열의 모든 원소 없애기
-    integersA.clear();
-    std::cout << "after clear: size A=" << integersA.size() << std::endl;
-
     // 배열에 원소 추가하기
     for(int i=0; i<10; i++)
         integersA.push_back(i*i);
@@ -43,6 +31,18 @@ void practiceVector()
     for(int i=0; i<10; i++)
         integersA[i] = i*10;
 
+    // 배열 사이즈 확인
+    std::cout << "check size A=" << integersA.size() << std::endl;
+    std::cout << "check size B=" << integersB.size() << std::endl;
+
+    // 배열 사이즈 변경
+    integersA.resize(10);
+    std::cout << "after resizing: size A=" << integersA.size() << std::endl;
+
+    // 배열의 모든 원소 없애기
+    integersA.clear();
+    std::cout << "after clear: size A=" << integersA.size() << std::endl;
+	
     // iterator를 이용한 배열의 for loop
     std::cout << "vector loop by iterator:";
     for(std::vector<int>::iterator it=integersA.begin(); it!=integersA.end(); it++)

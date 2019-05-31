@@ -1,0 +1,1 @@
+/usr/bin/g++  -fPIC   -shared -Wl,-soname,libgtest.so -o libgtest.so CMakeFiles/gtest.dir/src/gtest-all.cc.o  -L/home/ian/workplace/Fall_2018_Lectures/Robotics/ros-pkg-samples/build-self_drive-Default/gtest/gtest/src -lpthread -Wl,-rpath,/home/ian/workplace/Fall_2018_Lectures/Robotics/ros-pkg-samples/build-self_drive-Default/gtest/gtest/src 

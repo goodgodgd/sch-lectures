@@ -49,6 +49,7 @@ public:
         // static 멤버 함수에서는 static 멤버 변수만 접근할 수 있다.
         cout << "Number of students: " << n_students << endl;
         // static 함수에서는 일반 멤버 함수/변수에 접근할 수 없다.
+        score++;
     }
 
 private:
@@ -85,8 +86,10 @@ void practiceConstStatic()
     count();
     count();
 
+    int count=0;
     // 학생 객체 생성
     Student kim(78);
+    count++;
     Student* lee = new Student(90);
 
     // 일반 함수는 객체를 통해서만 호출 가능하다.
