@@ -1,8 +1,7 @@
 #include "self_drive/tb3driver.h"
 
-TB3Driver::TB3Driver(ros::Publisher* _vel_pub)
+TB3Driver::TB3Driver()
 {
-	pubVelo = _vel_pub;
 	velMsg.linear.x = 0; velMsg.linear.y = 0; velMsg.linear.z = 0;
 	velMsg.angular.x = 0; velMsg.angular.y = 0; velMsg.angular.z = 0;
 }
@@ -11,7 +10,6 @@ void TB3Driver::ldsCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 {
 	// copy before processing for data time sync
 	velMsg = selfDrive(scan);
-	publishVelocity();
 }
 
 geometry_msgs::Twist TB3Driver::selfDrive(const sensor_msgs::LaserScan::ConstPtr& scan)
@@ -26,7 +24,7 @@ geometry_msgs::Twist TB3Driver::selfDrive(const sensor_msgs::LaserScan::ConstPtr
 	return vel;
 }
 
-void TB3Driver::publishVelocity()
+geometry_msgs::Twist TB3Driver::getVelocity()
 {
-	pubVelo->publish(velMsg);
+    return velMsg;
 }

@@ -28,14 +28,16 @@ int main(int argc, char **argv)
 	ros::Rate loop_rate(10);
 
     // 반드시 subscriber가 돌아가기 전에 생성
-    tb3driver = new TB3Driver(&velopub);
+    tb3driver = new TB3Driver();
 	
 	// create subscriber
     ros::Subscriber ldssub = nh.subscribe("scan", 1, ldsCallback);
+    geometry_msgs::Twist velocity;
 
     while(ros::ok())
     {
-        tb3driver->publishVelocity();
+        velocity = tb3driver->getVelocity();
+        velopub.publish(velocity);
         ros::spinOnce();
         loop_rate.sleep();
     }

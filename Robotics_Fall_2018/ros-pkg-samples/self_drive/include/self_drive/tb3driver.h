@@ -9,9 +9,9 @@
 class TB3Driver
 {
 public:
-    TB3Driver(ros::Publisher* _vel_pub);
+    TB3Driver();
     void ldsCallback(const sensor_msgs::LaserScan::ConstPtr& scan);
-    void publishVelocity();
+    geometry_msgs::Twist getVelocity();
 
 private:
     geometry_msgs::Twist selfDrive(const sensor_msgs::LaserScan::ConstPtr& scan);
