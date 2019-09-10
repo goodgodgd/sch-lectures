@@ -8,3 +8,4 @@ build-*-Release
 Open3D
 __pycache__
 igdata
+venv

@@ -43,14 +43,28 @@ else:
     print("13 ** 3 < 30 **2")
 
 print("\nWhat is difference between `is` and `==`?")
-print("little difference for basic types(int, float, str)")
-print("12 == 12:", 12 == 12)
-print("12 is 12:", 12 is 12)
-print("12 == True:", 12 == True)
-print("12 is True:", 12 is True)
+print("little difference for built-in types(int, float, str)")
+intvar = 12
+print("intvar == 12:", intvar == 12)
+print("intvar is 12:", intvar is 12)
+boolvar = True
+print("boolvar == True:", boolvar == True)
+print("boolvar is True:", boolvar is True)
 
-print("big difference for other types")
-foo = [1]
-bar = [1]
+print("big difference for object types")
+foo = [1, 2]
+bar = [1, 2]
 print("foo == bar", foo == bar)
 print("foo is bar", foo is bar)
+goo = bar
+goo[0] = 0
+print("bar, goo:", bar, goo)
+print("foo == goo", foo == goo)
+print("bar is goo", bar is goo)
+
+
+value = 10
+if value % 2 == 0 and value < 12:
+    print("value is even and less than 12")
+if value % 2 != 0 or value < 0:
+    print("value is odd or negative")

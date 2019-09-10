@@ -9,8 +9,29 @@ print("Life \"is\" too short,\nYou \'need\' python")
 # 한글도 잘 나온다.
 print("안녕? 파이썬")
 
-print("날 " + ("너무" * 3 + " ")*5 + "좋아하면 그때 말해줘")
-print("내가 " + ("자꾸" * 3 + " ")*5 + "떠오르면 그때 불러줘")
+"""
+can you feel me 나를 느껴 봐요
+can you touch me 나를 붙잡아 줘
+can you hold me 나를 꼭 안아 줘
+I want you pick me up
+pick me pick me pick me up
+pick me pick me pick me up
+pick me pick me
+pick me pick me
+pick me pick me pick me up
+pick me pick me pick me up
+pick me pick me pick me up
+pick me pick me
+pick me pick me
+I want you pick me up
+"""
+print("\n" + "="*30)
+print("can you feel me 나를 느껴 봐요 \ncan you touch me 나를 붙잡아 줘")
+print("can you hold me 나를 꼭 안아 줘 \nI want you pick me up")
+print(("pick me "*3 + "up ") * 2)
+print("pick me "*4)
+print(("pick me "*3 + "up ") * 3)
+print("pick me "*4 + "I want you pick me up")
 
 
 print("\n" + "="*30)
@@ -74,10 +95,10 @@ print("\n" + "="*30)
 print("str class functions")
 # 문자열 함수를 이용하는 두 가지 방법
 # 1. 문자열 자체에서 사용, 2. 문자열 변수에서 사용
-print("count substring")
-print("count '너무':", "날 너무너무너무".count('너무'))
-text = "날 " + ("너무" * 3 + " ")*5 + "좋아하면 그때 말해줘"
-print("count '너무':", text.count('너무'))
+print("count substring 'pick me':")
+print("pick me pick me pick me up".count('pick me'))
+text = "pick me pick me pick me up"
+print(text.count('pick me'))
 
 
 print("\nfind substring")
@@ -145,3 +166,28 @@ print("Simply say:", Simply_say)
 print("\nsplit string into list of substrings")
 print("split by words:", We_say.split())
 print("split by phrase:", We_say.split(","))
+
+
+marble = \
+    "나는 대리암 염산과 반응하면 이산화탄소를 내며 녹는 대리암\n" \
+    "나는 대리암 염산과 반응하면 이산화탄소를 내며 녹는 대리암\n" \
+    "그간 많은 stress 견뎌내며 비로소 대리암이 되었다네\n" \
+    "모든 게 완벽했던 그 어느 날 난 너를 만나게 된 거야\n" \
+    "모든 게 완벽했던 그 어느 날 난 너를 만나게 된 거야\n" \
+    "나는 대리암 염산과 반응하면 이산화탄소를 내며 녹는 대리암\n" \
+    "나는 대리암 염산과 반응하면 이산화탄소를 내며 녹는 대리암\n" \
+    "나를 보고 웃기라도 하는 날엔 하루 종일 아무것도 할 수 없네\n" \
+    "그 눈으로 날 똑바로 바라보면 나는 녹아버릴 거야\n" \
+    "나는 대리암 염산과 반응하면 이산화탄소를 내며 녹는 대리암\n" \
+    "나는 대리암 염산과 반응하면 이산화탄소를 내며 녹는 대리암\n" \
+    "나는 대리암 염산과 반응하면 이산화탄소를 내며 녹는 대리암\n" \
+    "나는 대리암 염산과 반응하면 이산화탄소를 내며 녹는 대리암\n" \
+    "이것이 염산반응이다\n" \
+    "이것이 염산반응이다\n" \
+    "Hcl이다 CaCO3다\n" \
+    "2Hcl + CaCO3 -> CaCl2 +CO2 + H2O다.\n" \
+    "나는 대리암 염산과 반응하면 이산화탄소를 내며 녹는 대리암\n" \
+    "나는 대리암 염산과 반응하면 이산화탄소를 내며 녹는 대리암\n" \
+    "나는 대리암 나는 대리암"
+
+print(marble)

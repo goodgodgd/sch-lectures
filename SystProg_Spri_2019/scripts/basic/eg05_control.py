@@ -15,9 +15,9 @@ print("\nlist of marvel heroes")
 for hero in marvel_heroes:
     print(f"    {hero}")
 
-print("\nlist of dc heroes")
+print("list of dc heroes")
 for i in range(len(dc_heroes)):
-    print(f"    {dc_heroes[i]}")
+    print(f"{i})  {dc_heroes[i]}")
 
 i = 0
 while i < len(dc_heroes) and dc_heroes[i].endswith('man'):
@@ -73,6 +73,16 @@ for ind, (mv, dc) in enumerate(zip(marvel_heroes, dc_heroes)):
     else:
         print("{0} vs {1}: {1} win!".format(mv, dc))
 
+hero_names = {"iron man": "로다주", "thor": "햄식이"}
+print("iterate over Dictionary KEYS")
+for character in hero_names.keys():
+    print("character:", character)
+print("iterate over Dictionary VALUES")
+for name in hero_names.values():
+    print("name:", name)
+print("iterate over Dictionary ITEMS")
+for character, name in hero_names.items():
+    print(f"character:name = {character}:{name}")
 
 print("\ncreate a new list from the existing list")
 super_heroes = []

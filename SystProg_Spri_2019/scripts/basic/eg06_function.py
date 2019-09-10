@@ -1,3 +1,9 @@
+def add(n1, n2):
+    return n1+n2
+
+
+print(add(1, 2))
+
 member_scores = {"나연": {"python": 77, "cpp": 86, "java": 54},
                  "정연": {"python": 96, "cpp": 69, "java": 85},
                  "지효": {"python": 84, "cpp": 47, "java": 36}
@@ -155,6 +161,7 @@ print("\nvariable scope")
 if True:
     var_created = "created"
 print("variable created inside block:", var_created)
+
 if False:
     var_not_created = "not created"
 try:

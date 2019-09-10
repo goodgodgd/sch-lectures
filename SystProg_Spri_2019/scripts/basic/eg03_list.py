@@ -35,7 +35,7 @@ print("practice:", depth2_list[2][:1])
 mammal = ["dog", "cat", "human"]
 reptile = ["snake", "lizard", "frog"]
 bird = ["eagle", "sparrow", "chicken"]
-animal = mammal + reptile + bird
+animal = mammal*2 + reptile + bird
 print("\nlist concatenation")
 print("animal:", animal)
 
