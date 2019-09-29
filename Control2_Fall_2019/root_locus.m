@@ -10,21 +10,27 @@ pz_angle = 1;
 % 입력인자로부터 파라미터 설정
 numvarargs = length(varargin);
 for i=1:2:numvarargs
+    % 그래프 범위 지정
     if strcmp(varargin{i}, 'fig_axis')
         fig_axis = varargin{i+1};
     end
+    % 점근선 그리기
     if strcmp(varargin{i}, 'aux_lines')
         asymtote = varargin{i+1};
     end
+    % 출발각, 도착각 그리기
     if strcmp(varargin{i}, 'pz_angle')
         pz_angle = varargin{i+1};
     end
 end
 
-% 근궤적 그리기
-Ms = tf(num, den);
-figure(1)
+if den == 0
+    Ms = num;
+else
+    Ms = tf(num, den);
+end
 hold off
+% 근궤적 그리기
 rlocus(Ms)
 hold on
 
