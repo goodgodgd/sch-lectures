@@ -9,7 +9,7 @@ settling_time = 0;
 zeta = 0;
 
 % 입력인자로부터 파라미터 설정
-numvarargs = length(varargin)
+numvarargs = length(varargin);
 for i=1:2:numvarargs
     if strcmp(varargin{i}, 'peak_time')
         peak_time = varargin{i+1};
@@ -21,14 +21,12 @@ for i=1:2:numvarargs
         overshoot = varargin{i+1};
     end
     if strcmp(varargin{i}, 'zeta')
-        overshoot = varargin{i+1};
+        zeta = varargin{i+1};
     end
 end
 
 % 근궤적 그리기
 Ms = tf(num, den);
-figure(1)
-subplot(121)
 hold off
 rlocus(Ms)
 hold on
@@ -49,25 +47,20 @@ end
 
 % %OS를 만족하는 극점들 표시
 if overshoot > 0
-    zeta = -log(overshoot) / sqrt(pi^2 + log(overshoot));
+    zeta = -log(overshoot) / sqrt(pi^2 + log(overshoot)^2);
     theta = pi/2 + asin(zeta);
-    fprintf('overshoot %1.1f%% 를 만족하는 theta=%1.2f deg\n', overshoot*100, rad2deg(theta-pi/2))
+    fprintf('overshoot %1.2f%% 를 만족하는 theta=%1.2f deg\n', overshoot*100, rad2deg(theta-pi/2))
     plot([0 100*cos(theta)], [0 100*sin(theta)], '-.')
 end
 
 % zeta를 만족하는 극점들 표시
 if zeta > 0
     theta = pi/2 + asin(zeta);
-    fprintf('overshoot %1.1f%% 를 만족하는 theta=%1.2f deg\n', overshoot*100, rad2deg(theta-pi/2))
+    fprintf('zeta %1.2f%% 를 만족하는 theta=%1.2f deg\n', zeta, rad2deg(theta))
     plot([0 100*cos(theta)], [0 100*sin(theta)], '-.')
 end
 
-Ms = tf(num, den);
-[y, t] = step(Ms);
-subplot(122)
 hold off
-plot(t, y)
-hold on
 
 end
 
