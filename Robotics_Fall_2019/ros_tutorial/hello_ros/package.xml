@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- packages.xml: ros에서 패키지를 관리하는데 필요한 정보 담음 -->
+<!-- 공식 패키지로 업로드시 공개해야 할 정보들 포함: 저자, 저작권 등 -->
+<!-- 의존 패키지들을 지정하면 빌드시 설치되지 않은 의존 패키지 자동 설치 -->
+<!-- 필수 태그는 주석에 * 붙임 -->
+
+<package format="2">
+  <!-- *패키지 생성시 지정한 이름 -->
+  <name>hello_ros</name>
+  <!-- *기본 생성시 버전은 0.0.0 인데 원하는대로 수정 가능 -->
+  <version>0.1.0</version>
+  <!-- *패키지 소개글 -->
+  <description>The hello_ros package</description>
+  <!-- *관리자 정보, 여러명도 가능 -->
+  <maintainer email="ian@todo.todo">ian</maintainer>
+  <!-- *라이센스 지정 -->
+  <license>BSD</license>
+  <!-- 저자 정보 -->
+  <author email="jane.doe@example.com">Jane Doe</author>
+  
+  <!-- 빌드 시스템 지정: catkin -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <!-- 빌드에 필요한 패키지 -->
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <!-- 다른 패키지에서 이 프로젝트 결과물(라이브러리)을 링크하여 사용할 때 필요한 패키지 -->
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <!-- 실행에 필요한 패키지 -->
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+</package>
