@@ -2,7 +2,7 @@ import matrix.dense_matrix as dm
 import matrix.sparse_matrix as sm
 
 print("="*30 + "\nProblem 1")
-dm1 = [[1, 2], [3, 4], [5, 6]]
+dm1 = [[1, 2, 3], [3, 4, 5], [5, 6, 5]]
 dm2 = [[1, 2], [3, 4]]
 
 res = dm.add(dm1[:2], dm2)
