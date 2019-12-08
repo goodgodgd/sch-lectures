@@ -33,21 +33,21 @@ set(gcf,'Position',[200 200 400 400])
 
 function draw_peak_time_line(tp, style)
     wd = pi/tp;
-    fprintf('Tp<%.4f, |imag(pole)|>%.4f\n', tp, wd)
+    fprintf('Tp<%.4f, wd>%.4f\n', tp, wd)
     plot([-100, 100], [wd, wd], style)
     plot([-100, 100], [-wd, -wd], style)
 end
 
 function draw_settle_time_line(ts, style)
-    sigmad = pi/ts;
-    fprintf('Ts<%.4f, |real(pole)|>%.4f\n', ts, sigmad)
+    sigmad = 4/ts;
+    fprintf('Ts<%.4f, sigmad>%.4f\n', ts, sigmad)
     plot([-sigmad, -sigmad], [-100, 100], style)
 end
 
 function draw_overshoot_line(os, style)
-    zeta = sqrt(log(os)^2 / (log(os)^2 + pi^2));
+    zeta = sqrt(log(os/100)^2 / (log(os/100)^2 + pi^2));
     theta = acos(zeta);
-    fprintf('%%OS<%.1f, zeta>%.4f, theta<%.4f\n', os, zeta, theta)
+    fprintf('%%OS<%.1f, zeta>%.4f, theta<%.4f(deg)\n', os, zeta, rad2deg(theta))
     plot([0 -100*cos(theta)], [0  100*sin(theta)], style)
     plot([0 -100*cos(theta)], [0 -100*sin(theta)], style)
 end
