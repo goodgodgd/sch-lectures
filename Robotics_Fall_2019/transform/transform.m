@@ -10,6 +10,7 @@ Tg_c = Tg_b * Tb_c
 p_b = [5 1 1]';
 p_a = Ta_b * p_b
 p_c = Tb_c \ p_b
+inv(Tb_c)
 
 function mat = transform_mat(x, y, theta)
     mat = [cos(theta) -sin(theta) x;
