@@ -63,21 +63,3 @@ with open("springx3.txt", "r") as f:
     lyrics = f.readlines()
     lyrics = [line.rstrip("\n") for line in lyrics]
     print("\n".join(lyrics))
-
-
-matrix_str = "4 2\n5 3"
-print("\nwrite matrix:", matrix_str)
-with open("matrix.txt", "w") as f:
-    f.write(matrix_str)
-
-matrix = []
-with open("matrix.txt", "r") as f:
-    line = f.readline()
-    while line:
-        line = line.rstrip("\n")
-        numbers = line.split(" ")
-        numbers = [int(num) for num in numbers]
-        matrix.append(numbers)
-        line = f.readline()
-print("read matrix:", matrix)
-print("determinant =", matrix[0][0]*matrix[1][1] - matrix[1][0]*matrix[0][1])
