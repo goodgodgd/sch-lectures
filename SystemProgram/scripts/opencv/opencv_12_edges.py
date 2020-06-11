@@ -7,11 +7,11 @@ IMG_PATH = "../sample_imgs"
 def sobel():
     image = cv2.imread(IMG_PATH + "/yumi-cells.jpg", cv2.IMREAD_GRAYSCALE)
     sobel_imgs = {"original": image}
-    sobel_imgs["Sobel dx"] = cv2.Sobel(image, -1, 1, 0, 3)
-    sobel_imgs["Sobel dy"] = cv2.Sobel(image, -1, 0, 1, 3)
+    sobel_imgs["Sobel dx"] = cv2.Sobel(image, ddepth=-1, dx=1, dy=0, ksize=3)
+    sobel_imgs["Sobel dy"] = cv2.Sobel(image, ddepth=-1, dx=0, dy=1, ksize=3)
     sobel_imgs["Sobel dx+dy"] = cv2.add(sobel_imgs["Sobel dx"], sobel_imgs["Sobel dy"])
-    sobel_imgs["Scharr dx"] = cv2.Scharr(image, -1, 1, 0)
-    sobel_imgs["Scharr dy"] = cv2.Scharr(image, -1, 0, 1)
+    sobel_imgs["Scharr dx"] = cv2.Scharr(image, ddepth=-1, dx=1, dy=0)
+    sobel_imgs["Scharr dy"] = cv2.Scharr(image, ddepth=-1, dx=0, dy=1)
     result_img = si.show_imgs(sobel_imgs, "Sobel & Scharr", 3)
     # cv2.imwrite(IMG_PATH + "/result/yumi-edges.jpg", result_img)
 
@@ -19,8 +19,8 @@ def sobel():
 def laplacian():
     image = cv2.imread(IMG_PATH + "/yumi-cells.jpg", cv2.IMREAD_GRAYSCALE)
     lapla_imgs = {"original": image}
-    sobel_dx = cv2.Sobel(image, -1, 1, 0, 3)
-    sobel_dy = cv2.Sobel(image, -1, 0, 1, 3)
+    sobel_dx = cv2.Sobel(image, ddepth=-1, dx=1, dy=0, ksize=3)
+    sobel_dy = cv2.Sobel(image, ddepth=-1, dx=0, dy=1, ksize=3)
     lapla_imgs["Sobel dx+dy"] = cv2.add(sobel_dx, sobel_dy)
     lapla_imgs["Laplacian"] = cv2.Laplacian(image, -1)
     result_img = si.show_imgs(lapla_imgs, "Laplacian", 3)
@@ -38,6 +38,6 @@ def canny():
 
 
 if __name__ == "__main__":
-    # sobel()
+    sobel()
     # laplacian()
-    canny()
+    # canny()
