@@ -16,13 +16,11 @@ pause
 disp('===== Problem 2.c =====')
 otf = 1/((s+2)*(s^2+8*s+25));
 root_locus(otf, 'asymptote', 'start_angle')
-text(-5, 3, 'p1')
 pause
 
 disp('===== Problem 2.d =====')
 otf = ((s+6)*(s+10))/(s^2+4*s+13);
 root_locus(otf, 'start_angle', 'break_point')
-text(-5, 3, 'p1')
 
 
 function root_locus(tf, varargin)
@@ -155,7 +153,7 @@ function draw_start_angle(tf, linelen, style)
     % 도착각
     not_on_real_axis = abs(imag(zeros)) > 0;
     for i=1:length(zeros)
-        % 실수가 아닌 복소수일 때만 출발각 계산
+        % 실수가 아닌 복소수일 때만 도착각 계산
         if not_on_real_axis(i) == 0
             continue            
         end
@@ -163,8 +161,8 @@ function draw_start_angle(tf, linelen, style)
         curzero = zeros(i);
         % 다른 극점과의 각도 합산 빼기
         for k=1:length(poles)
-                pole_ang = atan2(imag(curzero - poles(k)), real(curzero - poles(k)));
-                angle_sum = angle_sum - pole_ang;
+            pole_ang = atan2(imag(curzero - poles(k)), real(curzero - poles(k)));
+            angle_sum = angle_sum - pole_ang;
         end
         % 다른 영점과의 각도 합산 더하기
         for k=1:length(zeros)
