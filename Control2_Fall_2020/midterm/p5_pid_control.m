@@ -1,12 +1,11 @@
 clc; clear
-
 % 문제 정의
 s = tf('s');
-otf = 1/((s+2)*(s+5))
+otf = 1/((s+1)*(s+4)*(s+6))
 % 최대초과 비율
 os = 0.16;
 % 정착시간
-ts = 4;
+ts = 2;
 
 % 근궤적 그리기
 figure(1)
@@ -17,6 +16,7 @@ hold on
 fprintf('>>>>> 목표 극점 설계 \n')
 [zeta, theta] = draw_overshoot_line(os, 'b--');
 sigma_d = draw_settle_time_line(ts, 'r--');
+
 wn = sigma_d/zeta;
 pole_real = -sigma_d;
 pole_imag = wn*sqrt(1-zeta^2);
@@ -28,46 +28,20 @@ hold off
 axis([-12 2 -7 7])
 title('기본 근궤적과 극점 설계')
 
-
-fprintf('\n>>>>> 근궤적이 목표 극점을 지나게 하는 PD 제어기 설계 \n')
-disp('목표 극점에서의 개루프 전달함수 위상 계산')
-phase_G = 0;
-zero_otf = zero(otf);
-pole_otf = pole(otf);
-if ~isempty(zero_otf)
-    for i=1:size(zeros_otf,1)
-        vector = target_pole - zero_otf(i);
-        zero_phase = atan2(imag(vector), real(vector));
-        phase_G = phase_G + zero_phase;
-        fprintf('영점의 위상 angle(s - (%.3f + j%.3f)) = %.3f rad\n', ...
-                real(zero_otf(i)), imag(zero_otf(i)), zero_phase)
-    end
-end
-for i=1:size(pole_otf,1)
-    vector = target_pole - pole_otf(i);
-    pole_phase = atan2(imag(vector), real(vector));
-    phase_G = phase_G - pole_phase;
-    fprintf('극점의 위상 angle(s - (%.3f + j%.3f)) = %.3f(deg)\n', ...
-            real(pole_otf(i)), imag(pole_otf(i)), rad2deg(pole_phase))
-end
-fprintf('극점 p2 = %.3f + j%.3f 에서 G(s)의 위상 = %.3f\n', ...
-        real(target_pole), imag(target_pole), phase_G)
-phase_PD = -pi - phase_G;
-fprintf('PD 제어기가 가져야할 위상 = %.3f - (%.3f) = %.4f(rad) %.3f(deg)\n', ...
-        pi, phase_G, phase_PD, rad2deg(phase_PD))
-zero_pd = -real(target_pole) + imag(target_pole)/tan(phase_PD);
-fprintf('PD 제어기의 영점 위치 = %.4f\n', zero_pd)
+% PD 제어기의 영점 설계
+zero_pd = design_pd_controller(otf, target_pole);
 
 % PD 제어기를 반영한 근궤적
 subplot(1,3,2)
-otf_pd = otf * (s + zero_pd);
+otf_pd = otf * (s - zero_pd)
 rlocus(otf_pd)
 hold on
 plot(real(target_pole), imag(target_pole), 'rd')
 hold off
 title('PD 보상 후 근궤적')
 axis([-12 2 -7 7])
-
+K = -1/evalfr(otf_pd, target_pole);
+fprintf("PD 제어기 적용 후 target pole에서의 상수 이득 K=%1.4f\n", K)
 
 fprintf('\n>>>>> 정상상태 오차를 0으로 만드는 PI 제어기 설계 \n')
 zero_pi = 0.1;
@@ -89,7 +63,6 @@ hold off
 axis([-12 2 -7 7])
 title('PID 보상 후 근궤적')
 set(gcf,'Position',[200 200 1600 400])
-
 
 
 function [zeta, theta] = draw_overshoot_line(os, style)
@@ -124,4 +97,35 @@ function find_closed_pole(otf)
     for pole=verify_poles
         plot(real(pole), imag(pole), 'b>')
     end
+end
+
+function zero_pd = design_pd_controller(otf, target_pole)
+    fprintf('\n>>>>> 근궤적이 목표 극점을 지나게 하는 PD 제어기 설계 \n')
+    disp('목표 극점에서의 개루프 전달함수 위상 계산')
+    phase_G = 0;
+    zero_otf = zero(otf);
+    pole_otf = pole(otf);
+    if ~isempty(zero_otf)
+        for i=1:size(zeros_otf,1)
+            vector = target_pole - zero_otf(i);
+            zero_phase = atan2(imag(vector), real(vector));
+            phase_G = phase_G + zero_phase;
+            fprintf('영점의 위상 angle(s - (%.3f + j%.3f)) = %.3f rad\n', ...
+                    real(zero_otf(i)), imag(zero_otf(i)), zero_phase)
+        end
+    end
+    for i=1:size(pole_otf,1)
+        vector = target_pole - pole_otf(i);
+        pole_phase = atan2(imag(vector), real(vector));
+        phase_G = phase_G - pole_phase;
+        fprintf('극점의 위상 angle(s - (%.3f + j%.3f)) = %.3f(deg)\n', ...
+                real(pole_otf(i)), imag(pole_otf(i)), rad2deg(pole_phase))
+    end
+    fprintf('극점 s = %.3f + j%.3f 에서 G(s)의 위상 = %.1f(deg) = %.3f(rad)\n', ...
+            real(target_pole), imag(target_pole), rad2deg(phase_G), phase_G)
+    phase_PD = -pi - phase_G;
+    fprintf('PD 제어기가 가져야할 위상 = %.3f - (%.3f) = %.4f(rad) = %.3f(deg)\n', ...
+            pi, phase_G, phase_PD, rad2deg(phase_PD))
+    zero_pd = real(target_pole) - imag(target_pole)/tan(phase_PD);
+    fprintf('PD 제어기의 영점 위치 = %.4f\n', zero_pd)
 end
