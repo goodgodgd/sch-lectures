@@ -6,6 +6,7 @@ typedef cv::Ptr<cv::Feature2D> FeaturePtr;
 typedef cv::Ptr<cv::DescriptorMatcher> MatcherPtr;
 
 
+// Detector holds keypoint detector, descriptor computer and their results
 class Detector
 {
     std::string name;

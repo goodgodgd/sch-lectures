@@ -15,7 +15,7 @@ public:
         cv::Ptr<cv::Feature2D> desc;
         cv::Ptr<cv::DescriptorMatcher> matcher;
         if(descType=="sift")
-            desc = cv::xfeatures2d::SIFT::create();
+            desc = cv::SIFT::create();
         else if(descType=="surf")
             desc = cv::xfeatures2d::SURF::create();
         else if(descType=="orb")

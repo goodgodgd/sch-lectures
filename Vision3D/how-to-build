@@ -11,6 +11,8 @@ https://docs.opencv.org/master/
 cmake 옵션
 https://docs.opencv.org/master/db/d05/tutorial_config_reference.html
 
+OPENCV_ENABLE_NONFREE 체크
+
 cmake 할때 반드시 나와야할것
     module opencv_core...
     module opencv_flann...

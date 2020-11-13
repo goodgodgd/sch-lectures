@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
-project(descriptor_matcher)
+project(descriptor)
 
 set(CMAKE_CXX_COMPILER g++)
 
-set(OpenCV_ROOT_DIR "${HOME}/lib/deploy/OpenCV")
-find_package(OpenCV REQUIRED)
+find_package(OpenCV REQUIRED PATHS $ENV{HOME}/lib/deploy/opencv/lib/cmake NO_DEFAULT_PATH)
 message("OpenCV_INCLUDE_DIR: " ${OpenCV_INCLUDE_DIRS})
 include_directories(${OpenCV_INCLUDE_DIRS})
 
