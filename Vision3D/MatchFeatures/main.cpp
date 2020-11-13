@@ -1,10 +1,46 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include "feature.hpp"
+
 
 int main()
 {
-    cv::Mat img(100, 100, CV_8UC3, 255);
-    cv::imshow("image", img);
-    cv::waitKey();
+    std::cout << "Press 'r' to change reference frame," << std::endl
+            << "'u' to increase min inlier ratio," << std::endl
+            << "'d' to decrease min inlier ratio," << std::endl
+            << "and 'q' to quit." << std::endl;
+
+    cv::VideoCapture cap(0);
+    if(!cap.isOpened())
+        return -1;
+    
+    cv::Mat frame;
+    cap >> frame;
+
+    MatchHandler matcher({"sift", "surf", "orb"}, {"bf", "flann", "flann"});
+    matcher.SetRefImage(frame);
+
+    while(1)
+    {
+        cap >> frame;
+        matcher.MatchImage(frame);
+
+        int key = cv::waitKey(10);
+        if(key==int('r') || key==int('R'))
+        {
+            std::cout << "change reference image" << std::endl;
+            matcher.SetRefImage(frame);
+        }
+        else if(key==int('u') || key==int('U'))
+            matcher.ChangeAcceptRatio(0.1f);
+        else if(key==int('d') || key==int('D'))
+            matcher.ChangeAcceptRatio(-0.1f);
+        else if(key==int('q') || key==int('Q'))
+            break;
+        
+        cv::Mat result = matcher.DrawMatchResult();
+        cv::imshow("matches", result);
+        cv::waitKey(10);
+    }
     return 0;
 }
