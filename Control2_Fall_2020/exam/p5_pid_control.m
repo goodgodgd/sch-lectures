@@ -3,15 +3,14 @@ clc; clear
 s = tf('s');
 otf = 1/((s+1)*(s+4)*(s+6))
 % 최대초과 비율
-os = 0.16;
+os = 0.20;
 % 정착시간
-ts = 2;
+ts = 1.5;
 
 % 근궤적 그리기
 figure(1)
 subplot(1,3,1)
 rlocus(otf)
-hold on
 
 fprintf('>>>>> 목표 극점 설계 \n')
 [zeta, theta] = draw_overshoot_line(os, 'b--');
@@ -23,9 +22,10 @@ pole_imag = wn*sqrt(1-zeta^2);
 target_pole = pole_real + 1i*pole_imag;
 fprintf('최대초과와 정정시간을 만족하는 극점의 위치 s = %.4f + j%.4f\n', ...
         pole_real, pole_imag)
+hold on
 plot(pole_real, pole_imag, 'rd')
 hold off
-axis([-12 2 -7 7])
+axis([-10 2 -6 6])
 title('기본 근궤적과 극점 설계')
 
 % PD 제어기의 영점 설계
@@ -39,7 +39,7 @@ hold on
 plot(real(target_pole), imag(target_pole), 'rd')
 hold off
 title('PD 보상 후 근궤적')
-axis([-12 2 -7 7])
+axis([-10 2 -6 6])
 K = -1/evalfr(otf_pd, target_pole);
 fprintf("PD 제어기 적용 후 target pole에서의 상수 이득 K=%1.4f\n", K)
 
@@ -60,23 +60,35 @@ otf_final = otf_pid * K
 find_closed_pole(otf_final)
 
 hold off
-axis([-12 2 -7 7])
+axis([-10 2 -6 6])
 title('PID 보상 후 근궤적')
 set(gcf,'Position',[200 200 1600 400])
 
-
-function [zeta, theta] = draw_overshoot_line(os, style)
-    zeta = sqrt(log(os)^2 / (log(os)^2 + pi^2));
-    theta = acos(zeta);
-    fprintf('%%OS=%.1f, zeta=%.4f, theta=%.3f(deg)\n', os, zeta, rad2deg(theta))
-    plot([0 -100*cos(theta)], [0  100*sin(theta)], style)
-    plot([0 -100*cos(theta)], [0 -100*sin(theta)], style)
+function wd = draw_peak_time_line(tp, style)
+    wd = pi/tp;
+    fprintf('Tp<%.4f, wd>%.4f\n', tp, wd)
+    hold on
+    plot([-100, 100], [wd, wd], style)
+    plot([-100, 100], [-wd, -wd], style)
+    hold off
 end
 
 function sigma_d = draw_settle_time_line(ts, style)
     sigma_d = 4/ts;
-    fprintf('Ts=%.4f, |real(pole)|=%.4f\n', ts, sigma_d)
+    fprintf('Ts<%.4f, sigmad>%.4f\n', ts, sigma_d)
+    hold on
     plot([-sigma_d, -sigma_d], [-100, 100], style)
+    hold off
+end
+
+function [zeta, theta] = draw_overshoot_line(os, style)
+    zeta = sqrt(log(os/100)^2 / (log(os/100)^2 + pi^2));
+    theta = acos(zeta);
+    fprintf('%%OS<%.2f, zeta>%.4f, theta<%.4f(deg)\n', os, zeta, rad2deg(theta))
+    hold on
+    plot([0 -100*cos(theta)], [0  100*sin(theta)], style)
+    plot([0 -100*cos(theta)], [0 -100*sin(theta)], style)
+    hold off
 end
 
 function K = find_K(otf, pole_pos)
