@@ -1,4 +1,9 @@
 clc; clear
+s= tf('s');
+GH = (s^+ 2*s + 50) / ((s+1) * ( s^2 + 4*s + 11))
+pause
+
+clc; clear
 
 % 좌표 축만 그리기
 range = [-6 2 -4 4];

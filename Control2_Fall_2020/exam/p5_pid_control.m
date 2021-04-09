@@ -82,7 +82,10 @@ function sigma_d = draw_settle_time_line(ts, style)
 end
 
 function [zeta, theta] = draw_overshoot_line(os, style)
-    zeta = sqrt(log(os/100)^2 / (log(os/100)^2 + pi^2));
+    if (os >= 1)
+        error('WRONG %OS: %1.1f\n', os)
+    end
+    zeta = sqrt(log(os)^2 / (log(os)^2 + pi^2));
     theta = acos(zeta);
     fprintf('%%OS<%.2f, zeta>%.4f, theta<%.4f(deg)\n', os, zeta, rad2deg(theta))
     hold on

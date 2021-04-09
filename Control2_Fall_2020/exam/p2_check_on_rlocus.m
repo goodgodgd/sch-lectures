@@ -48,6 +48,19 @@ plot([0], [2], 'rd')
 plot(real(pole(G)), imag(pole(G)), 'xk')
 plot(real(zero(G)), imag(zero(G)), 'ok')
 hold off
+pause
+
+% 근궤적 위의 점 확인
+rlocus(G)
+hold on
+% 확인할 점
+plot([-1 0], [1 2], 'rd')
+% 극점 영점
+plot(real(pole(G)), imag(pole(G)), 'xk')
+plot(real(zero(G)), imag(zero(G)), 'ok')
+hold off
+axis([-4 1 -3  3])
+pause
 
 
 function draw_axis(range)
