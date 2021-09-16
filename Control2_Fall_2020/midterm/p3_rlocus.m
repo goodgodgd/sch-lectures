@@ -99,7 +99,7 @@ function draw_break_point(tf, style)
     % 근궤적의 교차점 후보 구하기 = dK_w의 분자가 0이 되는 해 구하기
     [num, den] = numden(dK_w);  % 분자의 추출
     num = sym2poly(num);        % 분자의 계수 추출
-    breakpts = roots(num);      % 분자=0 의 해 계산
+    breakpts = roots(num)      % 분자=0 의 해 계산
     for i=1:size(breakpts, 1)
         % 분기점으로부터 다시 K(s_i) 계산하기
         K_wi = double(subs(K_w, w, breakpts(i)));
