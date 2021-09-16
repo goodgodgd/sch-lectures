@@ -2,7 +2,7 @@ clc; clear
 
 % 문제 정의
 s = tf('s');
-otf = 1/((s+2)*(s+5))
+otf = 1/((s+1)*(s+5))
 % 최대초과 비율
 os = 0.12;
 
@@ -43,7 +43,7 @@ set(gcf,'Position',[200 200 400 400])
 function [zeta, theta] = draw_overshoot_line(os, style)
     zeta = sqrt(log(os)^2 / (log(os)^2 + pi^2));
     theta = acos(zeta);
-    fprintf('%%OS=%.1f, zeta=%.4f, theta=%.3f(deg)\n', os, zeta, rad2deg(theta))
+    fprintf('%%OS=%.2f, zeta=%.4f, theta=%.3f(deg)\n', os, zeta, rad2deg(theta))
     plot([0 -100*cos(theta)], [0  100*sin(theta)], style)
     plot([0 -100*cos(theta)], [0 -100*sin(theta)], style)
 end

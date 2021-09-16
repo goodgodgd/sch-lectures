@@ -8,6 +8,7 @@ Tg_b = Tg_a * Ta_b
 Tg_c = Tg_b * Tb_c
 
 p_b = [5 1 1]';
+p_g = Tg_b * p_b
 p_a = Ta_b * p_b
 p_c = Tb_c \ p_b
 inv(Tb_c)

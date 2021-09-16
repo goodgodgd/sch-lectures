@@ -4,22 +4,22 @@ s = tf('s');
 figure(1)
 
 disp('===== Problem 2.a =====')
-otf = (s+8)/((s+2)*(s+4)*(s+6));
+otf = (s+8)/((s+1)*(s+3)*(s+6));
 root_locus(otf, 'asymptote')
 pause
 
 disp('===== Problem 2.b =====')
-otf = 1/((s+2)*(s+4)*(s+6));
+otf = 1/((s+1)*(s+3)*(s+5))
 root_locus(otf, 'asymptote')
 pause
 
 disp('===== Problem 2.c =====')
-otf = 1/((s+2)*(s^2+8*s+25));
+otf = 1/((s+3)*(s^2+8*s+20));
 root_locus(otf, 'asymptote', 'start_angle')
 pause
 
 disp('===== Problem 2.d =====')
-otf = ((s+6)*(s+10))/(s^2+4*s+13);
+otf = ((s+4)*(s+8))/(s^2+4*s+13);
 root_locus(otf, 'start_angle', 'break_point')
 
 
