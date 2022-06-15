@@ -12,3 +12,5 @@ igdata
 venv
 test.m
 temp*
+__test__
+*.bak
