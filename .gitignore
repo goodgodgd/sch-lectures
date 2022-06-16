@@ -7,10 +7,9 @@ build-*-Debug
 build-*-Release
 *.asv
 Open3D
-__pycache__
+__*__
 igdata
 venv
 test.m
 temp*
-__test__
 *.bak
