@@ -7,7 +7,7 @@ result = index_word(text, word)
 print(f"result={result}\n")
 
 print("=== 2. sum list")
-data = [1, 2, 3, 100, 4, 5]
+data = [1, 2, 3, 10, 4, 5]
 result = sum_list(data)
 print(f"result1={result}")
 result = sum_list(data, 10)

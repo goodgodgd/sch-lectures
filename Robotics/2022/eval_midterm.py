@@ -42,7 +42,7 @@ def evaluate_main():
         print("score table\n", score_table)
 
     print("="*30)
-    print("score_table:", score_table)
+    print("score_table\n", score_table)
     # score_table.to_csv(os.path.join(DST_PATH, "systprog_eval.csv"), index=False)
 
 
@@ -66,7 +66,7 @@ def evaluate_problem(cor_exc, sub_exc):
         else:
             print(f">>{cor_exc.target_name}/{test_key} FAILED")
             if test_key in result:
-                print(f"\tcompare: /{expected[test_key]}/{result[test_key]}/")
+                print(f"\tcompare: {expected[test_key]} / {result[test_key]} ")
     print(f"{cor_exc.target_name} scored {score_sum}")
     return score_sum
 

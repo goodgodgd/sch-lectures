@@ -15,6 +15,8 @@ def sum_list(data, outlier=None):
     for d in data:
         if outlier and d < outlier:
             result += d
+        if outlier is None:
+            result += d
     return result
 
 
