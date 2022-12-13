@@ -1,3 +1,4 @@
+import os
 import inspect
 import copy
 import pandas as pd
@@ -7,7 +8,7 @@ import importlib
 import midterm_correct_answer as cor_ans
 import executers
 
-DST_PATH = "C:/Users/SCH/Desktop"
+DST_PATH = "C:/Users/user/Desktop"
 
 
 def evaluate_main():
@@ -25,25 +26,35 @@ def evaluate_main():
         print("\n\n" + "#"*30 + "\n" + "MODULE:", module)
         try:
             sub_ans = importlib.import_module(module)
+            imported = True
         except Exception as e:
             print("[import error]", e)
-            continue
+            imported = False
 
         indiv_scores = {}
-        for cls_type in exec_classes:
-            print("~"*10, "Test", cls_type.__name__, "~"*10)
-            cor_exc, sub_exc = cls_type(cor_ans), cls_type(sub_ans)
-            indiv_scores[cor_exc.target_name] = evaluate_problem(cor_exc, sub_exc)
+        if imported:
+            for cls_type in exec_classes:
+                print("~"*10, "Test", cls_type.__name__, "~"*10)
+                cor_exc, sub_exc = cls_type(cor_ans), cls_type(sub_ans)
+                indiv_scores[cor_exc.target_name] = evaluate_problem(cor_exc, sub_exc)
 
         indiv_scores["total"] = sum(list(indiv_scores.values()))
         indiv_scores["name"] = module.split(".")[1]
+        print("individual score:", indiv_scores)
         # score_table = score_table.append(indiv_scores, ignore_index=True)
         score_table = pd.concat([score_table, pd.DataFrame.from_records([indiv_scores])])
-        print("score table\n", score_table)
 
     print("="*30)
+    # score_table = score_table[["name", "index_word", "sum_list", "add_dicts", "mani_list", "statistics"]]
+    columns = list(score_table)
+    columns.remove("name")
+    score_table = score_table.fillna(0)
+    score_table[columns] = score_table[columns].astype('int64')
+    columns.insert(0, "name")
+    print("columns", columns)
+    score_table = score_table[columns]
     print("score_table\n", score_table)
-    # score_table.to_csv(os.path.join(DST_PATH, "systprog_eval.csv"), index=False)
+    score_table.to_csv(os.path.join(DST_PATH, "systprog_midterm_eval.csv"), index=False)
 
 
 def set_print_options():
